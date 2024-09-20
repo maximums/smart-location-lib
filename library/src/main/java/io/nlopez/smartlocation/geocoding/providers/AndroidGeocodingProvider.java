@@ -92,11 +92,11 @@ public class AndroidGeocodingProvider implements GeocodingProvider {
             final Intent serviceIntent = new Intent(context, AndroidGeocodingService.class);
             serviceIntent.putExtra(LOCALE_ID, locale);
             if (!fromNameList.isEmpty()) {
-                context.registerReceiver(directReceiver, directFilter);
+                context.registerReceiver(directReceiver, directFilter, ContextCompat.RECEIVER_NOT_EXPORTED);
                 serviceIntent.putExtra(DIRECT_GEOCODING_ID, fromNameList);
             }
             if (!fromLocationList.isEmpty()) {
-                context.registerReceiver(reverseReceiver, reverseFilter);
+                context.registerReceiver(reverseReceiver, reverseFilter, ContextCompat.RECEIVER_NOT_EXPORTED);
                 serviceIntent.putExtra(REVERSE_GEOCODING_ID, fromLocationList);
             }
             context.startService(serviceIntent);
